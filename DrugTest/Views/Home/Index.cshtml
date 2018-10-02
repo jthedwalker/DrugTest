@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<br/>
+<div class="jumbotron">
+    <h1>Letica</h1>
+    <p class="lead">This application tracks current drug testing results as required by federal regulation. Click the button below for more information.</p>
+    <br/>
+    <p><a href="https://www.fmcsa.dot.gov/regulations/drug-alcohol-testing/employers-resources-and-downloads" class="btn btn-primary btn-lg" target="_blank">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Drivers</h2>
+        <p>
+            Displays a list of drivers from the TMW system.
+        </p>
+        @Html.ActionLink("Explore", "Index", "Drivers", null, new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-4">
+        <h2>Test Results</h2>
+        <p>Returns a list of current test results.</p>
+        @Html.ActionLink("Current", "BatchResults", "TestResults", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("All", "Index", "TestResults", null, new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-4">
+        <h2>Test Batches</h2>
+        <p>Returns a list of test batches.</p>
+        @Html.ActionLink("Explore", "Index", "TestBatches", null, new { @class = "btn btn-default"})
+    </div>
+</div>

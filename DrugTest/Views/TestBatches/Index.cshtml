@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DrugTest.Models.TestBatch>
+
+@{
+    ViewBag.Title = "TestBatches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+<div id="container" style="display: none">
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>Test Batches</h2>
+        <hr />
+        <table id="test" class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Criteria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    var batchResults = Url.Action("BatchResults", "TestResults", new {id = item.Id});
+
+                    <tr style="cursor: pointer;" onclick="window.location = '@batchResults'">
+                        <td>
+                            @Html.ActionLink(item.Id.ToString(), "Details", new {id = item.Id})
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Criteria)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#test').DataTable({
+                "order": [[0, 'desc']],
+                buttons: [
+                    { extend: 'csv', text: 'Export' }
+                ]
+            });
+
+            table.buttons().container()
+                .appendTo('#test_wrapper .col-sm-6:eq(0)');
+
+            document.getElementById("container").style.display = "";
+        });
+    </script>
+}

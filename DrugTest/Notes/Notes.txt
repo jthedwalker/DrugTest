@@ -1,0 +1,21 @@
+﻿
+
+General Notes:
+
+Decorate properties with [JsonIgnore] to prevent the whole data tree from loading into the api.
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/json-and-xml-serialization
+
+Preventing table from diplaying before datatables is ready.
+https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+
+Setting up IIS with localdb:
+
+IIS required ASP.net 4.0 to be registered to work correctly.
+https://stackoverflow.com/questions/23951662/http-error-500-21-internal-server-error
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe -i
+
+Remove "Initial Catalog" from the connection string.
+Data Source=(localdb)\MSSQLLocalDB; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|DriverContext-20180329152926.mdf
+
+Change "Process Model" of the application pool to "LocalSystem"
+

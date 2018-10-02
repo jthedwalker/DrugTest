@@ -1,0 +1,58 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#D0EEEE
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.table > thead > tr > td.pulled,
+.table > tbody > tr > td.pulled,
+.table > tfoot > tr > td.pulled,
+.table > thead > tr > th.pulled,
+.table > tbody > tr > th.pulled,
+.table > tfoot > tr > th.pulled,
+.table > thead > tr.pulled > td,
+.table > tbody > tr.pulled > td,
+.table > tfoot > tr.pulled > td,
+.table > thead > tr.pulled > th,
+.table > tbody > tr.pulled > th,
+.table > tfoot > tr.pulled > th {
+    background-color: #CBCDCE;
+}
+
+.table > thead > tr > td.canceled,
+.table > tbody > tr > td.canceled,
+.table > tfoot > tr > td.canceled,
+.table > thead > tr > th.canceled,
+.table > tbody > tr > th.canceled,
+.table > tfoot > tr > th.canceled,
+.table > thead > tr.canceled > td,
+.table > tbody > tr.canceled > td,
+.table > tfoot > tr.canceled > td,
+.table > thead > tr.canceled > th,
+.table > tbody > tr.canceled > th,
+.table > tfoot > tr.canceled > th {
+    background-color: #DCD3C1;
+}
+
+tr:hover > td {
+    background: #e8e8e8 !important;
+}

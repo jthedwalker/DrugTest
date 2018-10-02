@@ -1,0 +1,88 @@
+﻿@using DrugTest.Helpers
+@model IEnumerable<DrugTest.Models.TestResult>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+<div id="container" style="display: none">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2>@ViewBag.Title</h2>
+            <hr/>
+            <table id="test" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Driver.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Driver.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Driver.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TestBatch)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alcohol)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @if (Model != null)
+                {
+                foreach (var item in Model)
+                {
+                        var link = Url.Action("Edit", "TestResults", new {id = item.Id});
+                        StatusCss css = new StatusCss();
+                        var cssClass = css.GetCssClass(item.Status);
+
+                        <tr style="cursor: pointer;" onclick="window.location = '@link'">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Driver.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Driver.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Driver.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TestBatchId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Alcohol)
+                            </td>
+                            <td class="@cssClass">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#test').DataTable({
+                "order": [[3, 'desc']],
+                buttons: [
+                    { extend: 'csv', text: 'Export' }
+                ]
+            });
+
+            table.buttons().container()
+                .appendTo('#test_wrapper .col-sm-6:eq(0)');
+
+            document.getElementById("container").style.display = "";
+        });
+    </script>
+}

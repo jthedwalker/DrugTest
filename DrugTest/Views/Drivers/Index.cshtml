@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DrugTest.Models.Driver>
+
+@{
+    ViewBag.Title = "Drivers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div id="container" style="display: none">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2>Drivers</h2>
+            <hr />
+            <table id="drivers" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var active = item.Active ? "success" : "danger";
+                        var link = Url.Action("DriverResults", "Drivers", new { id = item.Id });
+
+                        <tr style="cursor: pointer;" class="urlLink" onclick="window.location = '@link'">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td class=@active>
+                                @Html.DisplayFor(modeItem => item.IsActive)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $('#drivers').DataTable({
+                "order": [[ 3, 'asc' ]],
+                buttons: [
+                    { extend: 'csv', text: 'Export' }
+                ]
+            });
+
+            table.buttons().container()
+                .appendTo('#drivers_wrapper .col-sm-6:eq(0)');
+
+            document.getElementById("container").style.display = "";
+        });
+    </script>
+
+}
